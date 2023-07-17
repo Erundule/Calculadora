@@ -1,12 +1,15 @@
 import React from 'react';
 import { View, Text} from 'react-native';
 
-const Display = ({ num1, num2, op, memoryExists, result }) => {
+const Display = ({memoryExists, value, memoryValue, expression }) => {
     return (
         <View style={styles.displayContainer}>
-            <Text style={styles.memoryText}>{memoryExists ? 'M' : ''}</Text>
-            <Text style={styles.valueText}>{num1} {num2} {op && num2 ? '=' : ''}</Text>
-            <Text style={styles.valueText}>{result}</Text>
+            <View style={{flexDirection: 'row'}}>
+                <Text style={styles.memoryText}>{memoryExists ? 'M=' : ''}</Text>
+                <Text style={styles.memoryText}>{memoryExists ? memoryValue : ' '}</Text>
+            </View>
+            <Text style={styles.memoryText}>{expression}</Text>
+            <Text style={styles.valueText}>{value}</Text>
         </View>
     );
 };
@@ -25,7 +28,7 @@ const styles = {
     },
 
     memoryText: {
-        color: '#fff',
+        color: '#2b3467',
         fontSize: 20,
     },
 };
