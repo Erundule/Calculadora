@@ -70,7 +70,7 @@ const handleEqual = (state) => {
       };
     case '%':
       return {
-        currentValue: `${(previous / current) * 100}`,
+        currentValue: `${(previous * current) / 100}`,
         expression: newExpression,
         ...resetState,
       };
