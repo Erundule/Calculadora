@@ -1,31 +1,31 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Button from "./src/components/Button";
-import calculator, {initialState} from "./src/components/Calculator";
+import calculator, { initialState } from "./src/components/Calculator";
 import Display from "./src/components/Display";
 
 // create class component of App
 export default class App extends React.Component {
- 
+
   state = initialState;
 
   HandleTap = (type, value) => {
     this.setState((state) => calculator(type, value, state));
   };
-  
-    render() {
+
+  render() {
     return (
       <View style={styles.container}>
         <SafeAreaView>
           {/* Display */}
-          <Display value={this.state.currentValue} expression={this.state.expression} memoryValue={this.state.memoryValue} memoryExists={this.state.memoryExists}/> 
+          <Display value={this.state.currentValue} expression={this.state.expression} memoryValue={this.state.memoryValue} memoryExists={this.state.memoryExists} />
           <View style={styles.div}>
-          
-          <Button 
-          value="MC" 
-          theme="memory"
-          handlePress={() => this.HandleTap("MC")} 
-          />
+
+            <Button
+              value="MC"
+              theme="memory"
+              handlePress={() => this.HandleTap("MC")}
+            />
 
             <Button
               value="MR"
@@ -63,7 +63,7 @@ export default class App extends React.Component {
             <Button
               value="%"
               theme="secondary"
-              handlePress={() => this.HandleTap("operator","%")}
+              handlePress={() => this.HandleTap("operator", "%")}
             />
 
             <Button
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   div: {
     flexDirection: "row",
   },
-  
+
   value: {
     color: '#2b3467',
     fontSize: 42,
@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 10,
   },
-  
-  
+
+
 });
 
 
