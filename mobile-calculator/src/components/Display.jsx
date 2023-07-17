@@ -19,8 +19,9 @@ const styles = {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
-        backgroundColor: '#fcffe7',
+        backgroundColor: '#7895cb',
         padding: 20,
+        margin: 20,
     },
     valueText: {
         color: '#2b3467',
