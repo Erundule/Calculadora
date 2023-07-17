@@ -14,9 +14,7 @@ const handleNumber = (value, state) => {
   let newExpression = '';
   
   if (operator) {
-    let value1 = '';
-    value1 = `${previousValue}`.slice(0)
-    newExpression = `${value1} ${operator}`;
+    newExpression = `${previousValue} ${operator}`;
   } else {
     newExpression = `${currentValue}${value}`;
   }
