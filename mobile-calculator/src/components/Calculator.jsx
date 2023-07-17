@@ -70,7 +70,7 @@ const handleEqual = (state) => {
       };
     case '%':
       return {
-        currentValue: `${(previous * current) / 100}`,
+        currentValue: `${(previous / current) * 100}`,
         expression: newExpression,
         ...resetState,
       };
@@ -79,16 +79,69 @@ const handleEqual = (state) => {
   }
 };
 
-const handleOperator = (op, state) => {
-  const { currentValue, expression } = state;
-  const newExpression = `${expression} ${currentValue} ${op}`;
-
-  return {
-    operator: op,
-    previousValue: currentValue,
-    expression: newExpression,
-    currentValue: '',
+// calculator function
+const calculator = (type, value, state) => {
+  const resetState = {
+    currentValue: "0",
+    operator: null,
+    previousValue: null,
+    expression: '',
   };
+  switch (type) {
+    case "number":
+      return handleNumber(value, state);
+    case "clear":
+      return{
+        ...resetState,
+      };
+    case "posneg":
+      return {
+        currentValue: `${parseFloat(state.currentValue) * -1}`,
+      };
+    
+    case "operator":
+      return {
+        operator: value,
+        previousValue: state.currentValue,
+        currentValue: "0",
+      };
+    case "equal":
+      return handleEqual(state);
+    case "MR":
+      return {
+        ...state,
+        currentValue: state.memoryValue,
+        memoryValue: state.currentValue,
+        memoryExists: true,
+        ...resetState,
+      };
+    case "MC":
+      return {
+        ...state,
+        memoryValue: 0,
+        memoryExists: false,
+      };
+    case "M+":
+      return {
+        ...state,
+        memoryValue: parseFloat(state.memoryValue) + parseFloat(state.currentValue) ,
+        ...resetState,
+        memoryExists: true,
+        currentValue: parseFloat(state.memoryValue) + parseFloat(state.currentValue),
+        ...resetState,
+      };
+    case "M-":
+      return {
+        ...state,
+        memoryValue: parseFloat(state.memoryValue) - parseFloat(state.currentValue),
+        ...resetState,
+        memoryExists: true,
+        currentValue: parseFloat(state.memoryValue) - parseFloat(state.currentValue),
+        ...resetState,
+      };
+    
+  };
+  
 };
 
 
